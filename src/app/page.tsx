@@ -8,7 +8,9 @@ export default function Home() {
         <div className="flex items-center gap-2 text-2xl font-bold group cursor-pointer">
           <div className="transition-colors">
             <span>github/</span>
-            <span className="group-hover:text-blue-500 group-hover:underline">clubhouse</span>
+            <span className="group-hover:text-blue-500 group-hover:underline">
+              clubhouse
+            </span>
           </div>
           <ExternalLink className="group-hover:scale-110 transition-transform" />
         </div>
