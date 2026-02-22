@@ -12,11 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-dvh flex flex-col bg-background font-sans antialiased",
-        )}
-      >
+      <body className={cn("min-h-svh flex flex-col antialiased")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -24,7 +20,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 flex flex-col">{children}</main>
           <SiteFooter />
         </ThemeProvider>
       </body>
