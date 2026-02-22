@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-14 items-center justify-between px-4">
+      <div className="container flex h-14 items-center justify-between px-4 mx-auto">
         <span className="flex items-center space-x-2">
           <GalleryVerticalEnd className="size-6" />
           <h2 className="font-bold">{siteConfig.name}</h2>
