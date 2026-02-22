@@ -1,9 +1,9 @@
-import { ModeSwitcher } from "@/components/mode-switcher";
-import { siteConfig } from "@/lib/config";
 import { GalleryVertical, LogIn } from "lucide-react";
 import Link from "next/link";
+import { ModeSwitcher } from "@/components/mode-switcher";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { siteConfig } from "@/lib/config";
 
 export function SiteHeader() {
   return (

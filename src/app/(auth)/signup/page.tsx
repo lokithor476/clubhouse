@@ -1,7 +1,3 @@
 export default function SignUpPage() {
-  return (
-    <div>
-      SignUp page
-    </div>
-  )
+  return <div>SignUp page</div>;
 }
