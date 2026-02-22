@@ -1,3 +1,4 @@
+import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-providers";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -16,6 +17,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <SiteHeader />
           <main className="flex flex-1 flex-col">{children}</main>
         </ThemeProvider>
       </body>
