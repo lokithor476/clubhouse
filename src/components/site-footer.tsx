@@ -8,9 +8,11 @@ export function SiteFooter() {
         <p>Open source on</p>
         <Link
           className="inline-flex cursor-pointer items-center hover:underline"
-          href="/"
+          href="https://github.com/lokithor476/clubhouse"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <p>Github</p>
+          <p>GitHub</p>
           <ExternalLink className="size-4" />
         </Link>
       </span>
