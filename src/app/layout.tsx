@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-providers";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,7 @@ export default function RootLayout({
         >
           <SiteHeader />
           <main className="flex flex-1 flex-col">{children}</main>
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>
