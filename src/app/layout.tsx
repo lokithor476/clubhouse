@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-providers";
+import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 export default function RootLayout({
@@ -8,14 +9,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={cn("flex min-h-svh flex-col antialiased")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="flex flex-1 flex-col">{children}</main>
         </ThemeProvider>
       </body>
     </html>
