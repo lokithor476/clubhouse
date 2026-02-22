@@ -15,7 +15,7 @@ export async function SiteHeader() {
           <h1 className="font-bold text-lg">github/clubhouse</h1>
         </Link>
         <div className="inline-flex items-center space-x-2">
-          <Link href="#" target="_blank" rel="noopener noreferrer">
+          <Link href="https://github.com/lokithor476/clubhouse" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="sm">
               <Github className="size-4" />
               <Separator className="mx-0.5" orientation="vertical" />
