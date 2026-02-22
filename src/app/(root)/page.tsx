@@ -16,7 +16,7 @@ export default function LandingPage() {
             type="email"
             placeholder="Enter your email"
           />
-          <Button>Notify Me</Button>
+          <Button type="submit">Notify Me</Button>
         </form>
         <p className="text-muted-foreground text-xs">
           Currently in development.
