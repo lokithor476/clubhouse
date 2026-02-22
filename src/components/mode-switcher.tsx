@@ -11,7 +11,12 @@ export function ModeSwitcher() {
     setTheme(theme === "light" ? "dark" : "light");
   };
   return (
-    <Button variant="outline" size="icon-sm" onClick={toggleTheme}>
+    <Button
+      variant="outline"
+      size="icon-sm"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
       <Sun className="size-4 dark:hidden" />
       <Moon className="hidden size-4 dark:block" />
     </Button>
