@@ -1,31 +1,32 @@
 "use client";
 
-import { UserRoundKey } from "lucide-react";
-import { Icons } from "@/components/icons";
+import { type LucideIcon, UserRoundKey } from "lucide-react";
+
+import { AppleIcon, GithubIcon, GoogleIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { loginWithOAuth } from "@/modules/user/actions";
 
 interface Providers {
-  icons: typeof Icons.google;
+  icons: LucideIcon;
   label: string;
   login: () => void;
 }
 
 const providers: Providers[] = [
   {
-    icons: Icons.google,
+    icons: GoogleIcon,
     label: "Google",
     login: () => loginWithOAuth("google"),
   },
   {
-    icons: Icons.github,
+    icons: GithubIcon,
     label: "GitHub",
     login: () => loginWithOAuth("github"),
   },
   {
-    icons: Icons.apple,
+    icons: AppleIcon,
     label: "Apple",
     login: () => loginWithOAuth("apple"),
   },
@@ -34,7 +35,7 @@ const providers: Providers[] = [
 export function LoginForm() {
   return (
     <div className="">
-      <div className="flex flex-col space-y-2 w-2xs">
+      <div className="flex w-2xs flex-col space-y-2">
         <Input type="email" placeholder="Email address" />
         <Button className="cursor-pointer">Sign in with Email</Button>
         <div className="w-full max-w-sm">
