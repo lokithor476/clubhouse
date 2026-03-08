@@ -1,8 +1,16 @@
 import { MoveRight } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
-import { LoginForm } from "@/components/login-form";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+import { LoginForm } from "@/components/login-form";
+import { auth } from "@/lib/auth";
+
+export default async function LoginPage() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (session) {
+    return redirect("/");
+  }
   return (
     <div className="flex flex-col items-center justify-center space-y-6">
       <div className="flex items-center space-x-4">
