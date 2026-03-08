@@ -5,16 +5,30 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { loginWithOAuth } from "@/modules/user/actions";
 
 interface Providers {
   icons: typeof Icons.google;
   label: string;
+  login: () => void;
 }
 
 const providers: Providers[] = [
-  { icons: Icons.google, label: "Google" },
-  { icons: Icons.apple, label: "Apple" },
-  { icons: Icons.github, label: "GitHub" },
+  {
+    icons: Icons.google,
+    label: "Google",
+    login: () => loginWithOAuth("google"),
+  },
+  {
+    icons: Icons.github,
+    label: "GitHub",
+    login: () => loginWithOAuth("github"),
+  },
+  {
+    icons: Icons.apple,
+    label: "Apple",
+    login: () => loginWithOAuth("apple"),
+  },
 ];
 
 export function LoginForm() {
@@ -37,6 +51,7 @@ export function LoginForm() {
             className="cursor-pointer"
             variant="secondary"
             key={providers.label}
+            onClick={providers.login}
           >
             <providers.icons className="size-4" />
             <span>Sign in with {providers.label}</span>
