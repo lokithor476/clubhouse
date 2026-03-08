@@ -24,7 +24,7 @@ export default function LandingPage() {
           organized. Join the waitlist to be notified when we launch.
         </p>
         {submitted ? (
-          <div role="status" aria-live="polite" className="text-sm font-medium text-green-600">
+          <div className="font-medium text-green-600 text-sm">
             You&apos;re on the list! We&apos;ll notify you when we launch.
           </div>
         ) : (
