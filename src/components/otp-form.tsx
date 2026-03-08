@@ -39,7 +39,7 @@ export function OtpForm({ email, onBack }: OtpFormProps) {
 
   return (
     <div className="flex w-2xs flex-col space-y-4">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col items-center gap-1">
         <p className="font-medium text-sm">Check your email</p>
         <p className="text-muted-foreground text-sm">
           We sent a 6-digit code to{" "}
@@ -47,7 +47,7 @@ export function OtpForm({ email, onBack }: OtpFormProps) {
         </p>
       </div>
 
-      <Form action={action} className="flex flex-col gap-4">
+      <Form action={action} className="flex flex-col items-center gap-4">
         {/* Pass email as hidden field */}
         <input type="hidden" name="email" value={email} />
         {/* Pass otp value as hidden field — InputOTP is uncontrolled re: FormData */}
@@ -77,7 +77,11 @@ export function OtpForm({ email, onBack }: OtpFormProps) {
           />
         </div>
 
-        <Button type="submit" disabled={isPending || otp.length < 6}>
+        <Button
+          type="submit"
+          disabled={isPending || otp.length < 6}
+          className="w-full"
+        >
           {isPending ? "Verifying..." : "Continue"}
         </Button>
       </Form>
