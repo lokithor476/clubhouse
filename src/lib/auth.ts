@@ -1,10 +1,15 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
-import * as schema from "@/db/schema";
+import { emailOTP } from "better-auth/plugins";
+import { Resend } from "resend";
 
+import { SignInEmailTemplate } from "@/components/signin-email-template";
+import * as schema from "@/db/schema";
 import { db } from "@/lib/db/connection";
 import { env } from "@/lib/env";
+
+const resend = new Resend(env.RESEND_API_KEY);
 
 export const auth = betterAuth({
   baseURL: env.BETTER_AUTH_URL,
@@ -27,5 +32,24 @@ export const auth = betterAuth({
       clientSecret: env.GITHUB_CLIENT_SECRET,
     },
   },
-  plugins: [nextCookies()],
+  plugins: [
+    nextCookies(),
+    emailOTP({
+      async sendVerificationOTP({ email, otp, type }) {
+        if (type === "sign-in") {
+          const { data, error } = await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: email,
+            subject: "Your Sign-In Code",
+            react: SignInEmailTemplate({
+              email,
+              otp,
+              expiresInMinutes: 10,
+            }),
+          });
+          console.log(data, error);
+        }
+      },
+    }),
+  ],
 });
