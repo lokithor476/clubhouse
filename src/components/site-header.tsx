@@ -1,38 +1,85 @@
-import { GalleryVertical, Github } from "lucide-react";
+import { GitBranchPlus, Inbox } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { ModeSwitcher } from "@/components/mode-switcher";
+import { SettingsDialog } from "@/components/settings-dialog";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Github } from "./icons";
+import { Separator } from "./ui/separator";
 
-export async function SiteHeader() {
-  const starCount = "0";
-
+export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="inline-flex items-center space-x-2">
-          <GalleryVertical className="mr-2" />
-          <h1 className="font-bold text-lg">github/clubhouse</h1>
+          <Image
+            className="rounded-md"
+            src="https://placehold.co/800?text=CH&font=roboto"
+            alt="Logo"
+            width={32}
+            height={32}
+            unoptimized
+          />
+          <h1 className="hidden font-bold text-lg md:block">gh/clubhouse</h1>
         </Link>
-        <div className="inline-flex items-center space-x-2">
-          <Link
+        <div className="space-x-2">
+          <ChangeSetDialog />
+          <InboxDialog />
+          <GitHubStars
             href="https://github.com/lokithor476/clubhouse"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              aria-label="View repository on GitHub"
-            >
-              <Github className="size-4" />
-              <Separator className="mx-0.5" orientation="vertical" />
-              <span className="mx-0.5 font-semibold">{starCount}</span>
-            </Button>
-          </Link>
+            starCount={0}
+          />
           <ModeSwitcher />
+          <SettingsDialog />
         </div>
       </div>
     </header>
+  );
+}
+
+async function GitHubStars({
+  starCount,
+  href,
+}: {
+  starCount?: number;
+  href: string;
+}) {
+  let stars = starCount;
+  
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/lokithor476/clubhouse",
+      { next: { revalidate: 3600 } }
+    );
+    const data = await response.json();
+    stars = data.stargazers_count;
+  } catch (error) {
+    console.error("Failed to fetch GitHub stars:", error);
+  }
+
+  return (
+    <Button asChild variant="outline" size="sm" className="gap-1">
+      <Link href={href}>
+        <Github className="size-4" />
+        <Separator orientation="vertical" className="mx-1" />
+        <span className="px-1">{stars}</span>
+      </Link>
+    </Button>
+  );
+}
+
+function InboxDialog() {
+  return (
+    <Button variant="outline" size="icon-sm">
+      <Inbox className="size-4" />
+    </Button>
+  );
+}
+
+function ChangeSetDialog() {
+  return (
+    <Button variant="outline" size="icon-sm">
+      <GitBranchPlus className="size-4" />
+    </Button>
   );
 }
