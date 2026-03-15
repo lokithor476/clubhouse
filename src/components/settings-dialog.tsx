@@ -54,10 +54,7 @@ export function SettingsDialog() {
       <DialogPortal>
         <DialogOverlay className="bg-black/50 backdrop-blur-sm" />
         <DialogContent
-          aria-describedby={undefined}
           showCloseButton={false}
-          onInteractOutside={(e) => e.preventDefault()}
-          onEscapeKeyDown={(e) => e.preventDefault()}
           className="w-[calc(100%-2rem)] max-w-md gap-0 overflow-hidden rounded-xl border border-border/60 p-0 shadow-xl"
         >
           <DialogHeader className="px-5 pt-5 pb-4">

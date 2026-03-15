@@ -22,7 +22,7 @@ export default function LandingPage() {
           <div className="">
             <p className="font-semibold">{description}</p>
           </div>
-          <EmailSubscription subscribed={false} verify={false} />
+          <EmailSubscription subscribed={true} verify={true} />
         </div>
       </div>
     </section>
