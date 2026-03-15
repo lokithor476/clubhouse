@@ -52,6 +52,23 @@ export const auth = betterAuth({
         }
       },
     }),
-    organization(),
+    organization({
+      schema: {
+        organization: {
+          additionalFields: {
+            description: {
+              type: "string",
+              required: false,
+              input: true,
+            },
+            verfied: {
+              type: "boolean",
+              required: false,
+              defaultValue: false,
+            },
+          },
+        },
+      },
+    }),
   ],
 });

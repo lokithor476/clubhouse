@@ -90,6 +90,8 @@ export const organization = pgTable(
     logo: text("logo"),
     createdAt: timestamp("created_at").notNull(),
     metadata: text("metadata"),
+    description: text("description"),
+    verfied: boolean("verfied").default(false),
   },
   (table) => [uniqueIndex("organization_slug_uidx").on(table.slug)],
 );
