@@ -8,6 +8,13 @@
       "when": 1771740283566,
       "tag": "0000_many_cargill",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773597781346,
+      "tag": "0001_worthless_jackpot",
+      "breakpoints": true
     }
   ]
 }
