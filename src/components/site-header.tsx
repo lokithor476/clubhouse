@@ -1,36 +1,31 @@
-import { GalleryVertical, Github } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { ModeSwitcher } from "@/components/mode-switcher";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { SettingsDialog } from "@/components/settings-dialog";
+import { GitHubStars } from "./github-stars";
 
-export async function SiteHeader() {
-  const starCount = "0";
+interface SiteHeaderProps {
+  isLoggedIn: boolean;
+}
 
+export function SiteHeader({ isLoggedIn }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="inline-flex items-center space-x-2">
-          <GalleryVertical className="mr-2" />
-          <h1 className="font-bold text-lg">github/clubhouse</h1>
+          <Image
+            className="rounded-md"
+            src="https://placehold.co/800?text=CH&font=roboto"
+            alt="Logo"
+            width={32}
+            height={32}
+            unoptimized
+          />
+          <h1 className="hidden font-bold text-lg md:block">gh/clubhouse</h1>
         </Link>
-        <div className="inline-flex items-center space-x-2">
-          <Link
-            href="https://github.com/lokithor476/clubhouse"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              aria-label="View repository on GitHub"
-            >
-              <Github className="size-4" />
-              <Separator className="mx-0.5" orientation="vertical" />
-              <span className="mx-0.5 font-semibold">{starCount}</span>
-            </Button>
-          </Link>
-          <ModeSwitcher />
+        <div className="flex items-center space-x-2">
+          <GitHubStars repo="lokithor476/clubhouse" />
+          {isLoggedIn ? <SettingsDialog /> : <ModeSwitcher />}
         </div>
       </div>
     </header>

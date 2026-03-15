@@ -1,14 +1,20 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-providers";
+import { auth } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
+import { headers } from "next/headers";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("flex min-h-svh flex-col antialiased")}>
@@ -18,7 +24,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
+          <SiteHeader isLoggedIn={!!session?.user} />
           <main className="flex flex-1 flex-col">{children}</main>
           <SiteFooter />
         </ThemeProvider>
