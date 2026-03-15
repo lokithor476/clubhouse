@@ -23,7 +23,7 @@ export default async function RegisterOrganizationPage() {
   const [organization] = await auth.api.listOrganizations({
     headers: await headers(),
   });
-  
+
   if (organization) {
     return redirect(`/org/${organization.slug}`);
   }
