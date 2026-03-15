@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import { emailOTP } from "better-auth/plugins";
+import { organization } from "better-auth/plugins/organization";
 import { Resend } from "resend";
 
 import { SignInEmailTemplate } from "@/components/signin-email-template";
@@ -49,6 +50,24 @@ export const auth = betterAuth({
           });
           console.log(data, error);
         }
+      },
+    }),
+    organization({
+      schema: {
+        organization: {
+          additionalFields: {
+            description: {
+              type: "string",
+              required: false,
+              input: true,
+            },
+            verfied: {
+              type: "boolean",
+              required: false,
+              defaultValue: false,
+            },
+          },
+        },
       },
     }),
   ],
